@@ -1,0 +1,43 @@
+# Ignore Terraform state files
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate*
+*.tfstate.backup*
+
+# Ignore Terraform crash logs
+crash.log
+
+# Ignore Terraform variable files (if they contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Ignore sensitive AWS credentials (if using environment-based authentication)
+.aws/
+
+# Ignore Terraform lock file (helps prevent issues with different Terraform versions)
+.terraform.lock.hcl
+
+# Ignore Terraform module cache & providers
+.terraform/
+.terraform.d/
+
+# Ignore local overrides (used for local development)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore plan files
+*.tfplan
+
+# Ignore any archive or compressed files
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Ignore logs and debugging files
+*.log
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
