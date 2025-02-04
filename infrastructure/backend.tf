@@ -1,5 +1,13 @@
 resource "aws_s3_bucket" "infra_state_s3" {
   bucket = "hotelapp-infra-state-bucket"
+    lifecycle {
+    prevent_destroy = true  # Prevents accidental deletion of the bucket
+    ignore_changes = [
+      # Ignore changes to tags, etc.
+      tags,
+      # Add other attributes you want to ignore
+    ]
+  }
 }
 
 # Enable versioning
@@ -24,13 +32,13 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "sse" {
 
 # Create DynamoDB
 resource "aws_dynamodb_table" "statelock" {
-    name = "hotelapp-infra-state-lock"
-    billing_mode = "PAY_PER_REQUEST"
-    hash_key = "LockID"
+  name         = "hotelapp-infra-state-lock"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
 
-    attribute {
-      name = "LockID"
-      type = "S"
-    }
-  
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+
 }
